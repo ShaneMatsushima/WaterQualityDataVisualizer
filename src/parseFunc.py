@@ -9,6 +9,7 @@ from datetime import datetime
 import csv
 import matplotlib.pyplot as plt
 
+# Graphs data based on the time it was taken (Needs to be redone without temp csv file)
 def graph_value_over_time(filepath, element):
     df = pd.read_csv(filepath, delimiter=',', low_memory=False)
     sr = pd.Series(df['CharacteristicName'])
@@ -28,11 +29,11 @@ def graph_value_over_time(filepath, element):
     
     
     df2 = pd.read_csv('.\\src\\csv\\tempTime.csv', delimiter=',', low_memory=False)
-    df2['date'] = pd.to_datetime(df2["date"])
-    df2 = df2.sort_values(by="date")
+    df2['date'] = pd.to_datetime(df2['date'])
+    df2 = df2.sort_values(by='date')
 
-    date = df2["date"]
-    value = df2["value"]
+    date = df2['date']
+    value = df2['value']
 
     pd.plotting.register_matplotlib_converters()
     plt.xlabel('Date YYYY/MM/DD')
@@ -41,6 +42,7 @@ def graph_value_over_time(filepath, element):
     plt.plot_date(date, value)
     plt.show()
 
+# Graphs data using a boxplot w/ average indicator 
 def box_plot(filepath, element, unit):
     df = pd.read_csv(filepath, delimiter=',', low_memory=False)
     dr = pd.Series(df['CharacteristicName'])
@@ -50,7 +52,7 @@ def box_plot(filepath, element, unit):
 
     valueElement = np.array(valueElement, dtype=np.float64)
 
-    boxPlotData =[valueElement]
+    boxPlotData = [valueElement]
 
     fig = plt.figure(1, figsize=(9,6))
 
