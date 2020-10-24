@@ -26,14 +26,9 @@ def graph_value_over_time(filepath, element):
         for i in combined:
             csvwriter.writerow(i)
     
-    df1 = pd.read_csv('.\\src\\csv\\tempTime.csv', delimiter=',', low_memory=False)
-    df1 = pd.DataFrame(df1)
-    df1["date"] = pd.to_datetime(df1["date"])
-    df1 = df1.sort_values(by="date")
-    df1.to_csv('.\\src\\csv\\tempTime.csv', index=True)
     
     df2 = pd.read_csv('.\\src\\csv\\tempTime.csv', delimiter=',', low_memory=False)
-    df2['date'] = pd.to_datetime(df1["date"])
+    df2['date'] = pd.to_datetime(df2["date"])
     df2 = df2.sort_values(by="date")
 
     date = df2["date"]
@@ -45,6 +40,27 @@ def graph_value_over_time(filepath, element):
     plt.title(element)
     plt.plot_date(date, value)
     plt.show()
+
+def box_plot(filepath, element, unit):
+    df = pd.read_csv(filepath, delimiter=',', low_memory=False)
+    dr = pd.Series(df['CharacteristicName'])
+    df = pd.DataFrame(df)
+
+    valueElement = df.loc[((df['CharacteristicName'] == element) & (df['MeasureUnitCode'] == unit)), 'ResultMeasureValue']
+
+    valueElement = np.array(valueElement, dtype=np.float64)
+
+    boxPlotData =[valueElement]
+
+    fig = plt.figure(1, figsize=(9,6))
+
+    ax = fig.add_subplot(111)
+
+    bp = ax.boxplot(boxPlotData, showmeans=True, meanline=True, patch_artist=True, labels=[element], autorange=True)
+
+    plt.ylabel(unit)
+    plt.show()
+
 
 
     
