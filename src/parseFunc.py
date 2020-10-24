@@ -14,24 +14,30 @@ def graph_value_over_time(filepath, element):
     sr = pd.Series(df['CharacteristicName'])
     df = pd.DataFrame(df)
 
-    date = pd.to_datetime(df.loc[df['CharacteristicName'] == element, 'ActivityStartDate'])
+    date = df.loc[df['CharacteristicName'] == element, 'ActivityStartDate']
     value = df.loc[df['CharacteristicName'] == element, 'ResultMeasureValue']
 
     combined = np.vstack((date, value)).T 
-    feild = ['date', 'time']
+    feild = ['date', 'value']
 
-    with open('.\\csv\\tempTime.csv', 'w') as csvfile:
+    with open('.\\src\\csv\\tempTime.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(feild)
         for i in combined:
             csvwriter.writerow(i)
     
-    df2 = pd.read_csv('.\\csv\\tempTime.csv', delimiter=',', low_memory=False)
-    df2['date'] = pd.to_datetime(df['date'])
-    df2.sort_values(by='date')
+    df1 = pd.read_csv('.\\src\\csv\\tempTime.csv', delimiter=',', low_memory=False)
+    df1 = pd.DataFrame(df1)
+    df1["date"] = pd.to_datetime(df1["date"])
+    df1 = df1.sort_values(by="date")
+    df1.to_csv('.\\src\\csv\\tempTime.csv', index=True)
+    
+    df2 = pd.read_csv('.\\src\\csv\\tempTime.csv', delimiter=',', low_memory=False)
+    df2['date'] = pd.to_datetime(df1["date"])
+    df2 = df2.sort_values(by="date")
 
-    date = df2['date']
-    value = df2['value']
+    date = df2["date"]
+    value = df2["value"]
 
     pd.plotting.register_matplotlib_converters()
     plt.xlabel('Date YYYY/MM/DD')
