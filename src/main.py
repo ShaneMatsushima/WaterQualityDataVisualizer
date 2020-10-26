@@ -1,3 +1,9 @@
+# GUI Creation for Data Visualization of csv Files
+# Created by: Shane Matsushima
+# Date: 10/25/2020
+
+#TODO: create note that data visualizer is meant for csv files from https://www.waterqualitydata.us/
+
 from parseFunc import *
 from tkinter import * 
 from tkinter.filedialog import askopenfile 
