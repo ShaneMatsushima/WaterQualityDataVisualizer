@@ -14,6 +14,7 @@ def graph_value_over_time(filepath, element):
     df = pd.read_csv(filepath, delimiter=',', low_memory=False)
     sr = pd.Series(df['CharacteristicName'])
     df = pd.DataFrame(df)
+    print(element)
 
     date = df.loc[df['CharacteristicName'] == element, 'ActivityStartDate']
     value = df.loc[df['CharacteristicName'] == element, 'ResultMeasureValue']
