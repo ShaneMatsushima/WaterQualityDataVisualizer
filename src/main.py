@@ -10,7 +10,7 @@ from tkinter.filedialog import askopenfile
 from tkinter import messagebox
 
 root = Tk() 
-root.geometry('600x300') 
+root.geometry('800x300') 
 root.title('Water Quality Data Visualizer 1.0')
 
 filename = ""
@@ -99,7 +99,7 @@ label1.place(relx=LEFT_MARGIN, rely=ROW_ONE, anchor=W)
 dropDownElement.place(relx=0.3, rely=ROW_ONE, anchor=W)
 label2.place(relx=LEFT_MARGIN, rely=ROW_TWO, anchor=W)
 dropDownGraph.place(relx=0.3125, rely=ROW_TWO, anchor=W)
-label2.place(relx=LEFT_MARGIN, rely=ROW_THREE, anchor=W)
+label3.place(relx=LEFT_MARGIN, rely=ROW_THREE, anchor=W)
 unitEntry.place(relx=0.305, rely=ROW_THREE, anchor=W)
 applyButton.place(relx=LEFT_MARGIN, rely=ROW_FOUR, anchor=W)
 
