@@ -29,7 +29,9 @@ To install the project, in your terminal, clone the repository. From there place
 For any issues or inqueries about the program, please open an issues tab and the issue will be addressed as soon as possible. 
 
 ## Author
+
 Mentor: Dr. Jordan Wolfand
+
 Developer: [Shane Matsushima](https://github.com/ShaneMatsushima)
 
 
